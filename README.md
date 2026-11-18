@@ -4,6 +4,18 @@
 
 Everything runs on your machine through [Ollama](https://ollama.com). No cloud APIs.
 
+![Chat answer with citations](docs/screenshots/03-chat-citations.png)
+
+## What it does (in simple words)
+
+RAG Vault is a private search-and-answer tool for a company's documents. You upload files, then ask questions in plain language, and an AI that runs on your own computer answers using only those documents, with numbered links to the exact passages it used. Each person only gets answers from documents they are allowed to see: a new employee can't get the salary figures from confidential board minutes, even by asking cleverly. When a document is uploaded, a small AI model reads it and labels it as public, internal or confidential, so it gets the right protection automatically. You can also browse a map of the people, products and companies mentioned across all documents, and every action is recorded in a log.
+
+**How it works**
+
+1. **Upload:** an editor adds a PDF, Markdown or text file.
+2. **Classify & index:** the file is split into passages, turned into vectors, labelled with a topic and sensitivity (which sets who can read it), stored in a vector database, and its people, companies and products are added to the knowledge graph.
+3. **Ask:** a user asks a question; the search only looks at passages that user is allowed to read, and the local LLM writes an answer that cites them.
+
 ## Features
 
 - **Roles:** `reader` asks questions. `editor` also adds documents. `admin` also removes documents, changes access tags, manages users, roles and clearances, and reads the audit log.
@@ -92,7 +104,7 @@ npm run dev -- --port 3710
 
 Open http://localhost:3710.
 
-**3. Demo documents** (optional, with the backend running). This uploads the fictional company documents in `samples/`: a public launch post, an internal roadmap, an internal security handbook and confidential board minutes.
+**3. Demo documents** (optional, with the backend running). This uploads the fictional company documents in `samples/`: a public launch post, a public help-center FAQ, an internal roadmap, an internal security handbook and confidential board minutes.
 
 ```bash
 cd backend && uv run python -m ragvault.load_samples
@@ -130,14 +142,35 @@ Full report with confusion matrices and discussion: [`reports/classifier.md`](re
 
 ## Screenshots
 
-Screenshots go in [`docs/screenshots/`](docs/screenshots/).
+All screenshots use the fictional demo documents in `samples/`.
 
-- TODO: login page with demo accounts
-- TODO: chat with citations (reader)
-- TODO: documents page with classifier labels and access tags
-- TODO: knowledge graph with a selected node
-- TODO: admin panel (users and clearances)
-- TODO: audit log
+**Login with roles:** one-click demo accounts for the three roles; each sees and can do different things.
+
+![Login page with demo accounts](docs/screenshots/01-login.png)
+
+**Upload (editor):** a new file is classified on upload; the FAQ was labelled Sci/Tech and *public*, so it got the `public` tag automatically. The table shows every document's topic, sensitivity, access tag and indexing status.
+
+![Documents page after an editor upload](docs/screenshots/02-upload-editor.png)
+
+**Chat with citations (reader):** the answer cites numbered sources; clicking one shows the exact passage. The reader only gets `public` and `internal` sources, never the restricted board minutes.
+
+![Reader chat answer with expanded citation](docs/screenshots/03-chat-citations.png)
+
+**Knowledge graph:** people, companies, places and products extracted by the local LLM. Clicking *Orion Labs* lists the documents that mention it (with their access tags) and its relations.
+
+![Knowledge graph with Orion Labs selected](docs/screenshots/04-graph.png)
+
+**Admin panel:** create users, change roles, and tick which access tags each user may read. Documents are removed (with their chunks and graph nodes) from the Documents page.
+
+![Admin panel with users, roles and clearances](docs/screenshots/05-admin.png)
+
+**Audit log:** every login, upload and question is recorded, including which tags the user was allowed and how many documents were cited.
+
+![Audit log](docs/screenshots/06-audit-log.png)
+
+**Classifier results:** the three approaches on AG News, plus the sensitivity classifier (details in [`reports/classifier.md`](reports/classifier.md)).
+
+![Classifier comparison chart](docs/screenshots/07-classifier-results.png)
 
 ## Configuration
 
