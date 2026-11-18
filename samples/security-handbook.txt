@@ -1,0 +1,9 @@
+Orion Labs Security Handbook (internal)
+
+All employees must enable hardware security keys for their Orion Labs accounts. Lost keys must be reported to the security team within 24 hours.
+
+Production access is granted through Teleport and expires after 8 hours. Engineers must never copy customer data to their laptops.
+
+Security incidents are handled by the on-call security engineer, currently Carlos Diaz. The incident process follows the NIST 800-61 guide: detect, contain, eradicate, recover, and write a postmortem.
+
+Vendors that process customer data, such as Stripe and Cloudflare, are reviewed every year by the security team.

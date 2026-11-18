@@ -1,0 +1,170 @@
+{
+  "config": {
+    "quick": false,
+    "n_train": 8000,
+    "n_test": 2000,
+    "transformer": "google/bert_uncased_L-4_H-256_A-4",
+    "transformer_epochs": 3,
+    "transformer_lr": 0.0001,
+    "unfreeze_layers": -1,
+    "skip_transformer": false,
+    "embed_model": "qwen3-embedding:0.6b",
+    "device": "mps",
+    "machine": "arm64",
+    "torch": "2.15.0"
+  },
+  "topic": {
+    "tfidf_logreg": {
+      "accuracy": 0.88,
+      "macro_f1": 0.8796892901501784,
+      "confusion": [
+        [
+          427,
+          23,
+          36,
+          14
+        ],
+        [
+          11,
+          480,
+          6,
+          3
+        ],
+        [
+          17,
+          7,
+          418,
+          58
+        ],
+        [
+          17,
+          11,
+          37,
+          435
+        ]
+      ],
+      "train_s": 25.913742667005863,
+      "infer_ms_per_1k": 90.45062499353662
+    },
+    "embedding_mlp": {
+      "accuracy": 0.888,
+      "macro_f1": 0.887860601874219,
+      "confusion": [
+        [
+          429,
+          16,
+          38,
+          17
+        ],
+        [
+          7,
+          489,
+          3,
+          1
+        ],
+        [
+          18,
+          2,
+          413,
+          67
+        ],
+        [
+          17,
+          1,
+          37,
+          445
+        ]
+      ],
+      "train_s": 52.35963220798294,
+      "epochs": 15,
+      "infer_ms_per_1k": 126.31372899340931,
+      "embed_s": 499.78820041703875
+    },
+    "finetuned_transformer": {
+      "accuracy": 0.895,
+      "macro_f1": 0.8947827598497768,
+      "confusion": [
+        [
+          423,
+          19,
+          35,
+          23
+        ],
+        [
+          6,
+          488,
+          4,
+          2
+        ],
+        [
+          16,
+          4,
+          426,
+          54
+        ],
+        [
+          13,
+          1,
+          33,
+          453
+        ]
+      ],
+      "train_s": 656.0345554999949,
+      "epochs": 3,
+      "params_m": 11.171588,
+      "trainable_m": 11.171588,
+      "unfreeze_layers": -1,
+      "infer_ms_per_1k": 3698.158249986591,
+      "model": "google/bert_uncased_L-4_H-256_A-4"
+    }
+  },
+  "sensitivity": {
+    "tfidf_logreg": {
+      "accuracy": 0.5966666666666667,
+      "macro_f1": 0.5939656832623909,
+      "confusion": [
+        [
+          51,
+          43,
+          6
+        ],
+        [
+          12,
+          87,
+          1
+        ],
+        [
+          0,
+          59,
+          41
+        ]
+      ],
+      "train_s": 1.2234034589782823,
+      "infer_ms_per_1k": 111.04888670767347
+    },
+    "embedding_mlp": {
+      "accuracy": 0.73,
+      "macro_f1": 0.719315399115621,
+      "confusion": [
+        [
+          69,
+          0,
+          31
+        ],
+        [
+          43,
+          50,
+          7
+        ],
+        [
+          0,
+          0,
+          100
+        ]
+      ],
+      "train_s": 10.569173665979179,
+      "epochs": 11,
+      "infer_ms_per_1k": 125.83138663709784
+    }
+  }
+}

@@ -1,0 +1,23 @@
+# runtime data
+data/
+models/*.pt
+!models/.gitkeep
+# python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# node
+frontend/node_modules/
+frontend/.next/
+frontend/next-env.d.ts
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+# local code-index tool (not part of the project)
+graft/
+.ignore

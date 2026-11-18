@@ -1,0 +1,32 @@
+[project]
+name = "ragvault"
+version = "0.1.0"
+description = "RAG Vault backend: permission-aware RAG with a knowledge graph and PyTorch classifiers"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.163.2",
+    "httpx>=0.28.1",
+    "lancedb>=0.41.0",
+    "networkx>=3.7",
+    "numpy>=2.5.5",
+    "pyarrow>=26.0.1",
+    "pyjwt>=2.15.1",
+    "pypdf>=7.1.0",
+    "python-multipart>=0.0.34",
+    "rank-bm25>=0.2.2",
+    "scikit-learn>=1.9.1",
+    "torch>=2.15.0",
+    "transformers>=5.23.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
